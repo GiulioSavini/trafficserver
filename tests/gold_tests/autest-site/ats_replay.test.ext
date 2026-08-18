@@ -131,7 +131,7 @@ def configure_ats(obj: 'TestRun', server: 'Process', ats_config: dict, dns: Opti
 
         # Configure sni.yaml if specified.
         sni_yaml = ats_config.get('sni_yaml')
-        if sni_yaml != None:
+        if sni_yaml is not None:
             ts.Disk.sni_yaml.AddLines(yaml.dump(sni_yaml).split('\n'))
 
     # Configure plugin_config if specified.
@@ -159,8 +159,13 @@ def configure_ats(obj: 'TestRun', server: 'Process', ats_config: dict, dns: Opti
 
     # Configure logging.yaml if specified.
     logging_yaml = ats_config.get('logging_yaml')
-    if logging_yaml != None:
+    if logging_yaml is not None:
         ts.Disk.logging_yaml.AddLines(yaml.dump(logging_yaml).split('\n'))
+
+    # Configure ip_allow.yaml if specified.
+    ip_allow_yaml = ats_config.get('ip_allow_yaml')
+    if ip_allow_yaml is not None:
+        ts.Disk.ip_allow_yaml.AddLines(yaml.dump(ip_allow_yaml).split('\n'))
 
     # Configure storage.yaml if specified.
     storage_yaml = ats_config.get('storage_yaml')
